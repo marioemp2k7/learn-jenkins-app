@@ -26,6 +26,7 @@ pipeline {
                 steps {
                 sh '''
                     test -f build/index.html | if echo $? -eq "0"; then echo "The file exists"; else echo "The file cannot be found"; fi
+                    ls -la
                     CI=true npm test
                 '''
                 }
