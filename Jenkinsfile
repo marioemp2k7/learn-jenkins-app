@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    label 'master'
                     image 'node:18-alpine'
                     reuseNode true
                 }
@@ -22,12 +21,18 @@ pipeline {
             }
         }
         stage('Test') {
+                agent {
+                    docker {
+                        image 'node:18-alpine'
+                        reuseNode true
+                    }
+                }
                 steps {
-                    node('master') {
                         sh '''
                         test -f build/index.html | if echo $? -eq "0"; then echo "The file exists"; else echo "The file cannot be found"; fi
                         ls -la
-                        CI=true npm test
+                        npm ci
+                        npm test
                         '''
                 }
             }
