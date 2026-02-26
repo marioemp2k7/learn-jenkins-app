@@ -84,11 +84,13 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install netlify-cli@20.1.1
+                    npm install netlify-cli@20.1.1 node-jq
                     node_modules/.bin/netlify --version
                     echo "Deploying to Site ID: ${NETLIFY_SITE_ID}"
                     node_modules/.bin/netlify status      
-                    node_modules/.bin/netlify deploy --dir=build
+                    node_modules/.bin/netlify deploy --dir=build > deploy-output.json
+                    export DEPLOY_URL=$(node -p "require('node-jq').run('.deploy_url', 'deploy-output.json', {input: 'file'})")
+                    echo "Deployed to URL: $DEPLOY_URL"
                 '''
             }
         }
