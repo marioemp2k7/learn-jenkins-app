@@ -17,7 +17,6 @@ pipeline {
             }
             steps {
                 sh '''
-                    cleanWs()
                     node --version
                     npm --version
                     npm ci
