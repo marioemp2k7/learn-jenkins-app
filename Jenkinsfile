@@ -89,7 +89,7 @@ pipeline {
                     echo "Deploying to Site ID: ${NETLIFY_SITE_ID}"
                     node_modules/.bin/netlify status      
                     node_modules/.bin/netlify deploy --dir=build > deploy-output.json
-                    export DEPLOY_URL=$(node -p "require('node-jq').run('.deploy_url', 'deploy-output.json', {input: 'file'})")
+                    export DEPLOY_URL=$(node -p "require('node_modules/.bin/node-jq').run('.deploy_url', 'deploy-output.json', {input: 'file'})")
                     echo "Deployed to URL: $DEPLOY_URL"
                 '''
             }
