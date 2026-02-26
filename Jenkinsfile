@@ -17,13 +17,11 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo "Small change"
-                    ls -la
+                    cleanWs()
                     node --version
                     npm --version
                     npm ci
                     npm run build
-                    ls -la
                 '''
             }
         }
