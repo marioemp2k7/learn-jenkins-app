@@ -91,7 +91,7 @@ pipeline {
                     echo "Deploying to staging. Site ID: $NETLIFY_SITE_ID"
                     netlify status
                     netlify deploy --dir=build --json > /var/jenkins_home/workspace/learn-jenkins/deploy_output.json
-                    CI_ENVIRONMENT_URL=$(node-jq -r '.deploy_url' /var/jenkins_home/workspace/learn-jenkins/deploy_output.json)
+                    CI_ENVIRONMENT_URL=$(jq -r '.deploy_url' /var/jenkins_home/workspace/learn-jenkins/deploy_output.json)
                     echo "Deployed to URL: $CI_ENVIRONMENT_URL"
                     npx playwright test  --reporter=html
                 '''
