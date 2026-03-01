@@ -17,7 +17,7 @@ pipeline {
                 }
             }
             steps {
-                withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
                     sh '''
                         aws --version
                         aws s3 ls
@@ -25,6 +25,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Build') {
             agent {
                 docker {
