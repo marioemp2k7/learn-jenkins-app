@@ -17,10 +17,12 @@ pipeline {
                 }
             }
             steps {
-                sh '''
-                    aws --version
-                    aws s3 ls
-                '''
+                withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                    sh '''
+                        aws --version
+                        aws s3 ls
+                    '''
+                }
             }
         }
         stage('Build') {
