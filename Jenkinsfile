@@ -20,12 +20,13 @@ pipeline {
                 withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
                     sh '''
                         aws --version
-                        aws s3 ls
+                        echo "Hello S3!" > index.html
+                        aws s3 cp index.html s3://learn-jenkins-202603011048
                     '''
                 }
             }
         }
-        
+
         stage('Build') {
             agent {
                 docker {
