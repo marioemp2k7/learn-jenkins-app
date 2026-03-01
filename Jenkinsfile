@@ -38,7 +38,6 @@ pipeline {
                 withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
                     sh '''
                         aws --version
-                        echo "Hello S3!" > index.html
                         aws s3 sync build s3://learn-jenkins-202603011048
                     '''
                 }
