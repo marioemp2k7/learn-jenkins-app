@@ -9,24 +9,6 @@ pipeline {
 
     stages {
 
-        stage ('AWS') {
-            agent {
-                docker {
-                    image 'amazon/aws-cli'
-                    args "--entrypoint=''"
-                }
-            }
-            steps {
-                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
-                    sh '''
-                        aws --version
-                        echo "Hello S3!" > index.html
-                        aws s3 cp index.html s3://learn-jenkins-202603011048
-                    '''
-                }
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -41,6 +23,24 @@ pipeline {
                     npm ci
                     npm run build
                 '''
+            }
+        }
+
+        stage ('AWS') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli'
+                    args "--entrypoint=''"
+                }
+            }
+            steps {
+                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
+                    sh '''
+                        aws --version
+                        echo "Hello S3!" > index.html
+                        aws s3 sync build s3://learn-jenkins-202603011048
+                    '''
+                }
             }
         }
         
