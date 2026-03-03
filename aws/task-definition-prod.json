@@ -5,7 +5,7 @@
     "family": "LearnJenkinsApp-TaskDefinition-Prod",
     "containerDefinitions": [
         {
-            "name": "learnjenkindapp",
+            "name": "learnjenkinsapp",
             "image": "nginx:1.27-alpine",
             "portMappings": [
                 {
