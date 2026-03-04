@@ -38,9 +38,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    yum install -y amazon-linux-extras
-                    amazon-linux-extras enable docker
-                    yum install -y docker
+                    yum update && install docker -y
                     docker build -t myjenkinsapp .
                 '''
             }
