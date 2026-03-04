@@ -40,6 +40,7 @@ pipeline {
                 sh '''
                     yum update -y 
                     yum install -y docker
+                    echo api.version=1.44 >> ~/.docker-java.properties
                     docker build -t myjenkinsapp .
                 '''
             }
