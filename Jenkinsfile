@@ -35,6 +35,7 @@ pipeline {
                     reuseNode true
                     args "--entrypoint=''"
                 }
+            }
             steps {
                 sh '''
                     amazon-linux-extras install docker
