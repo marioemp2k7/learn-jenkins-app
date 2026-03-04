@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh '''
                     yum -y install docker
-                    service docker start
+                    systemctl start docker
                     docker build -t myjenkinsapp .
                 '''
             }
