@@ -6,8 +6,8 @@ pipeline {
         APP_NAME = 'learnjenkinsapp'
         AWS_DEFAULT_REGION = 'us-east-1'
         AWS_ECS_CLUSTER = 'LearnJenkinsApp-Cluster-Prod'
-        AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-Service-Prod'
-        AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod'
+        AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-Service_Prod1'
+        AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod1'
         AWS_DOCKER_REGISTRY = '238991998564.dkr.ecr.us-east-1.amazonaws.com'
         DOCKER_API_VERSION = '1.44'
     }
@@ -49,7 +49,7 @@ pipeline {
                 }
             }
         }
-
+        /*
         stage ('Deploy to AWS') {
             agent {
                 docker {
@@ -69,6 +69,6 @@ pipeline {
                 }
             }
         }
-        
+        */
     }   
  }
