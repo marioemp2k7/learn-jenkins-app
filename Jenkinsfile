@@ -13,7 +13,7 @@ pipeline {
     }
 
     stages {
-
+/*
         stage('Build') {
             agent {
                 docker {
@@ -30,7 +30,7 @@ pipeline {
                 '''
             }
         }
-
+*/
         stage ('Build Docker Image') {
             agent {
                 docker {
