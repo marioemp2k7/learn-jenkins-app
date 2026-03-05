@@ -26,6 +26,8 @@ pipeline {
                     node --version
                     npm --version
                     npm ci
+                    npm audit fix --force
+                    npx update-browserslist-db@latest
                     npm run build
                 '''
             }
