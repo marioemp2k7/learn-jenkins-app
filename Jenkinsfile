@@ -42,10 +42,13 @@ pipeline {
             steps {
                 withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
                     sh '''
-                        docker build -t $AWS_DOCKER_REGISTRY/$APP_NAME:$REACT_APP_VERSION .
+                        # docker build -t $AWS_DOCKER_REGISTRY/$APP_NAME:$REACT_APP_VERSION .
                         aws --version
                         aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_DOCKER_REGISTRY
-                        docker push $AWS_DOCKER_REGISTRY/$APP_NAME:$REACT_APP_VERSION
+                        docker build -t learnjenkinsapp .
+                        docker tag learnjenkinsapp:latest 238991998564.dkr.ecr.us-east-1.amazonaws.com/learnjenkinsapp:latest
+                        docker push 238991998564.dkr.ecr.us-east-1.amazonaws.com/learnjenkinsapp:latest
+                        # docker push $AWS_DOCKER_REGISTRY/$APP_NAME:$REACT_APP_VERSION
                     '''
                 }
             }
