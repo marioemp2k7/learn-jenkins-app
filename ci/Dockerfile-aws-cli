@@ -1,6 +1,6 @@
 FROM amazonlinux:2
+RUN yum install unzip jq -y
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
 RUN ./aws/install
 RUN amazon-linux-extras install docker
-RUN yum install jq -y
